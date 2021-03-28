@@ -10,8 +10,8 @@ import org.mockito.Mockito;
 import org.mockito.junit.MockitoJUnit;
 import org.mockito.junit.MockitoRule;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
 
 import static org.mockito.Mockito.doReturn;
 import static org.mockito.Mockito.spy;
@@ -38,8 +38,11 @@ public class ConsoleInvalidInputTest {
     @Tag("testing of NullPointerException with Exception rule")
     public void testEmptyAttributeInputFromConsole() throws IOException {
         String testInput = "Test #{TestSubject} and and #{TestSenderName} and #{TestSenderPosition}";
-        Mockito.when(bufferedReader.readLine()).thenReturn(testInput);
+        InputStream stream = new ByteArrayInputStream((testInput + "\n").getBytes(StandardCharsets.UTF_8)); //this stream will output the testInput string
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        consoleReader.setReader(reader);
         exceptionRule.expect(NullPointerException.class);
+        consoleReader.getFilteredInputFromConsole();
     }
 
     @Test
@@ -47,11 +50,15 @@ public class ConsoleInvalidInputTest {
     @Tag("testing of IndexOutOfBoundsException with Exception rule. expected = IndexOutOfBoundsException.class doesn't work here")
     public void testMoreThanRequiredAttributesFromConsole() throws IOException {
         String testInput = "Test #{TestSubject} and  #{TestReceiverName} and #{TestSenderName} and #{TestSenderPosition} but one more #{TestRedundantat} test";
-        Mockito.when(bufferedReader.readLine()).thenReturn(testInput);
+        InputStream stream = new ByteArrayInputStream((testInput + "\n").getBytes(StandardCharsets.UTF_8)); //this stream will output the testInput string
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stream));
+        consoleReader.setReader(reader);
         exceptionRule.expect(IndexOutOfBoundsException.class);
     }
 
     @AfterEach
-    public void afterEach(TestInfo testInfo) { System.out.println("after each: " + testInfo.getDisplayName() + "in" + this);}
+    public void afterEach(TestInfo testInfo) {
+        System.out.println("after each: " + testInfo.getDisplayName() + "in" + this);
+    }
 
 }

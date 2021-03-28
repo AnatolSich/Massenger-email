@@ -7,17 +7,50 @@
     <groupId>org.example</groupId>
     <artifactId>messenger-email</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 
     <properties>
+        <apache.commons.collections4.version>4.2</apache.commons.collections4.version>
+        <apache.commoms.version>1.1</apache.commoms.version>
+        <commons.io.version>2.6</commons.io.version>
         <junit.jupiter.version>5.4.2</junit.jupiter.version>
         <junit5.version>5.0.0-ALPHA</junit5.version>
         <junit.version>4.12</junit.version>
         <powermock.version>1.6.2</powermock.version>
         <mockito.version>3.5.13</mockito.version>
         <lombok.version>1.18.12</lombok.version>
+        <cucumber.version>6.8.1</cucumber.version>
+        <cucumber.datatable.version>1.1.7</cucumber.datatable.version>
+        <cucumber.java.cukes.version>1.2.6</cucumber.java.cukes.version>
     </properties>
 
     <dependencies>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-text</artifactId>
+            <version>${apache.commoms.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-collections4</artifactId>
+            <version>${apache.commons.collections4.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons.io.version}</version>
+        </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -70,6 +103,11 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <artifactId>cucumber-junit</artifactId>
+            <groupId>io.cucumber</groupId>
+            <version>${cucumber.version}</version>
         </dependency>
     </dependencies>
 
