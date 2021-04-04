@@ -33,6 +33,11 @@
         <cucumber.version>6.8.1</cucumber.version>
         <cucumber.datatable.version>1.1.7</cucumber.datatable.version>
         <cucumber.java.cukes.version>1.2.6</cucumber.java.cukes.version>
+        <cucmber.gherkin.version>15.0.2</cucmber.gherkin.version>
+        <hamcrest.junit.version>2.0.0.0</hamcrest.junit.version>
+        <hamcrest.all.version>1.3</hamcrest.all.version>
+        <jetbains.annotations.version>13.0</jetbains.annotations.version>
+
     </properties>
 
     <dependencies>
@@ -108,6 +113,69 @@
             <artifactId>cucumber-junit</artifactId>
             <groupId>io.cucumber</groupId>
             <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <artifactId>cucumber-picocontainer</artifactId>
+            <groupId>io.cucumber</groupId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java8</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <artifactId>datatable</artifactId>
+            <groupId>io.cucumber</groupId>
+            <version>${cucumber.datatable.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>info.cukes</groupId>
+            <artifactId>cucumber-java</artifactId>
+            <version>${cucumber.java.cukes.version}</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-testng</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-core</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>cucumber-plugin</artifactId>
+            <version>${cucumber.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>${jetbains.annotations.version}</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>io.cucumber</groupId>
+            <artifactId>gherkin</artifactId>
+            <version>${cucmber.gherkin.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-junit</artifactId>
+            <version>${hamcrest.junit.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.hamcrest</groupId>
+            <artifactId>hamcrest-all</artifactId>
+            <version>${hamcrest.all.version}</version>
         </dependency>
     </dependencies>
 
