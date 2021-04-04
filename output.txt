@@ -1,0 +1,8 @@
+The TestSubject needs review 
+ Dear TestReceiverName
+Kindly ask you to to take a look on the issue TestSubject. 
+We would like to hear yor opinion regarding this matter. Thank you in advance 
+ 
+Kind regards 
+TestSenderName 
+TestSenderPosition 

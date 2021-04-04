@@ -4,7 +4,6 @@ import com.javatesting.messenger.console.ReadAttributesFromConsole;
 import com.javatesting.messenger.console.WriteOutputEmailTextToConsole;
 import com.javatesting.messenger.template.TemplateAttributeEnum;
 import org.junit.Assert;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.gen5.api.BeforeEach;
 import org.junit.gen5.api.Disabled;
@@ -12,11 +11,11 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Tag;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.Spy;
-import org.mockito.junit.MockitoJUnit;
-import org.mockito.junit.MockitoRule;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
 import java.util.*;
 
@@ -28,12 +27,10 @@ import static org.mockito.Mockito.spy;
 @DisplayName("Console Mode valid tests")
 public class ConsoleValidInputTest {
 
-    @Rule
-    public MockitoRule mockitoRule = MockitoJUnit.rule();
-
     @Mock
     private BufferedReader bufferedReader = Mockito.mock(BufferedReader.class);
     private ReadAttributesFromConsole consoleReader = spy(new ReadAttributesFromConsole());
+    private EmailTextGenerator emailTextGenerator = spy(new EmailTextGenerator());
 
     @BeforeEach
     public void setUp() {
@@ -43,7 +40,7 @@ public class ConsoleValidInputTest {
     @Test
     @DisplayName("Test of ConsoleMode with valid input using Mockito")
     @Tag("smoke")
-    public void testValidInputGetFilteredInputFromConsole() throws IOException {
+    public void testValidInputGetFilteredInputFromConsole() {
         final List<String> expectedListOfAttributes = new ArrayList<>(Arrays.asList("TestSubject", "TestReceiverName", "TestSenderName", "TestSenderPosition"));
         final String testInput = "Test #{TestSubject} and  #{TestReceiverName} and #{TestSenderName} and #{TestSenderPosition}";
         InputStream stream = new ByteArrayInputStream((testInput + "\n").getBytes(StandardCharsets.UTF_8)); //this stream will output the testInput string
@@ -66,16 +63,16 @@ public class ConsoleValidInputTest {
                 put(SENDER_POSITION, "TestSenderPosition");
             }
         };
-        final Map<TemplateAttributeEnum, String> inputMap = consoleReader.createMapOfInputData(expectedListOfAttributes);
+        final Map<TemplateAttributeEnum, String> inputMap = emailTextGenerator.createMapOfInputData(expectedListOfAttributes);
         Assert.assertTrue(expectedMap.entrySet().stream()
                 .allMatch(e -> e.getValue().equals(inputMap.get(e.getKey()))));
     }
 
     @Test
     @Disabled("Disabled until issue with writer to map is fixed")
-    public void testValidInputFromConsoleAndOutPut() throws IOException {
+    public void testValidInputFromConsoleAndOutPut() {
         final List<String> expectedListOfAttributes = new ArrayList<>(Arrays.asList("TestSubject", "TestReceiverName", "TestSenderName", "TestSenderPosition"));
-        final Map<TemplateAttributeEnum, String> listOfAttributes = consoleReader.createMapOfInputData(expectedListOfAttributes);
+        final Map<TemplateAttributeEnum, String> listOfAttributes = emailTextGenerator.createMapOfInputData(expectedListOfAttributes);
         final String expectedEmailText = "The TestSubject needs review \n" +
                 " Dear TestReceiverName\n" +
                 "Kindly ask you to to take a look on the issue TestSubject. \n" +

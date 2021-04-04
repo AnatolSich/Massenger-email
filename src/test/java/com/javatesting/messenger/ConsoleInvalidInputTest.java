@@ -57,8 +57,6 @@ public class ConsoleInvalidInputTest {
     }
 
     @AfterEach
-    public void afterEach(TestInfo testInfo) {
-        System.out.println("after each: " + testInfo.getDisplayName() + "in" + this);
-    }
+    public void afterEach(TestInfo testInfo) { System.out.println("after each: " + testInfo.getDisplayName() + "in" + this);}
 
 }

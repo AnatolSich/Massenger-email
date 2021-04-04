@@ -2,15 +2,11 @@ package com.javatesting.messenger.console;
 
 import com.javatesting.messenger.EmailTextGenerator;
 import com.javatesting.messenger.template.TemplateAttributeEnum;
-import lombok.Getter;
-import lombok.Setter;
 
 import java.util.Map;
 
-@Getter
-@Setter
 public class WriteOutputEmailTextToConsole {
-    //  private final ReadAttributesFromConsole readAttributesFromConsoleMode = new ReadAttributesFromConsole();
+  //  private final ReadAttributesFromConsole readAttributesFromConsoleMode = new ReadAttributesFromConsole();
     private final EmailTextGenerator emailTextGenerator = new EmailTextGenerator();
     private final Map<TemplateAttributeEnum, String> listOfInputAttributes;// = readAttributesFromConsoleMode.createMapOfInputData(readAttributesFromConsoleMode.getFilteredInputFromConsole());
 
@@ -27,7 +23,7 @@ public class WriteOutputEmailTextToConsole {
         return emailTextGenerator.getEmailSubject(emailTextGenerator.getEmailTextMapper(listOfInputAttributes));
     }
 
-    public void printGeneratedEmailToConsole(Map<TemplateAttributeEnum, String> listOfInputAttributes) {
+    public void printGeneratedEmailToConsole(Map<TemplateAttributeEnum, String> listOfInputAttributes){
         System.out.println(String.format("%s \n %s", getEmailSubjectOutputToConsole(listOfInputAttributes), getEmailTextOutputToConsole(listOfInputAttributes)));
     }
 }
